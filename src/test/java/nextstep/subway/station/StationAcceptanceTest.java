@@ -6,6 +6,7 @@ import io.restassured.response.Response;
 import nextstep.subway.AcceptanceTest;
 import nextstep.subway.station.dto.StationResponse;
 import nextstep.subway.utils.ExpectedPageResult;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.data.domain.PageRequest;
@@ -65,32 +66,37 @@ public class StationAcceptanceTest extends AcceptanceTest {
         지하철역_목록_포함됨(response, Arrays.asList(createResponse1, createResponse2));
     }
 
+    @Disabled
     @DisplayName("지하철역을 페이지 형태로 조회한다.")
     @Test
     void getStationsPaging() {
         // given
         지하철역들이_등록되어있음(STATIONS_COUNT);
         PageRequest request = PageRequest.of(5, 5);
-        ExpectedPageResult expected = new ExpectedPageResult(5, 5, 175);
+
+
         // when
         ExtractableResponse<Response> response = 지하철_페이지요청함(request);
 
+        // then
+        ExpectedPageResult expected = new ExpectedPageResult(5, 5, 175);
         페이지_응답됨(response, expected);
     }
 
+    @Disabled
     @Test
     @DisplayName("지하철역을 페이지 형태로 조회한다.")
     void getLinesPageWithPk() {
         // given
         지하철역들이_등록되어있음(STATIONS_COUNT);
         PageRequest pageRequest = PageRequest.of(0, 10);
-        ExpectedPageResult expected = new ExpectedPageResult(0, 10, 175);
         Long id = 5L;
 
         // when
         ExtractableResponse<Response> response = 지하철_페이지요청함(id, pageRequest);
 
         // then
+        ExpectedPageResult expected = new ExpectedPageResult(0, 10, 175);
         페이지_응답됨(response, expected);
     }
 

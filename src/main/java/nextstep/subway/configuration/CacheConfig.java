@@ -22,7 +22,6 @@ import org.springframework.data.redis.serializer.StringRedisSerializer;
  * date : 2021/12/24
  * description :
  */
-@Profile(value = {"local", "prod"})
 @EnableCaching
 @Configuration
 public class CacheConfig extends CachingConfigurerSupport {

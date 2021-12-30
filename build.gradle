@@ -14,7 +14,7 @@ repositories {
 	maven { url 'https://repo.spring.io/snapshot' }
 }
 
-dependencies {q:q
+dependencies {
 	// spring
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'

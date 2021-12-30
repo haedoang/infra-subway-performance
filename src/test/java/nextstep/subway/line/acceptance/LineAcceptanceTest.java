@@ -9,6 +9,7 @@ import nextstep.subway.station.StationAcceptanceTest;
 import nextstep.subway.station.dto.StationResponse;
 import nextstep.subway.utils.ExpectedPageResult;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.data.domain.PageRequest;
@@ -97,12 +98,13 @@ public class LineAcceptanceTest extends AcceptanceTest {
         // given
         지하철_노선들이_등록되어_있음(TOTAL_ELEMENTS);
         PageRequest pageRequest = PageRequest.of(5, 8);
-        ExpectedPageResult expected = new ExpectedPageResult(5, 8, 100);
+
 
         // when
         ExtractableResponse<Response> response = 노선_페이지_요청함(pageRequest);
 
         // then
+        ExpectedPageResult expected = new ExpectedPageResult(5, 8, 100);
         노선_페이지_응답됨(response, expected);
     }
 
@@ -113,12 +115,13 @@ public class LineAcceptanceTest extends AcceptanceTest {
         지하철_노선들이_등록되어_있음(TOTAL_ELEMENTS);
         PageRequest pageRequest = PageRequest.of(0, 10);
         Long id = 25L;
-        ExpectedPageResult expected = new ExpectedPageResult(0, 10, TOTAL_ELEMENTS);
+
 
         // when
         ExtractableResponse<Response> response = 노선_페이지_요청함(id, pageRequest);
 
         // then
+        ExpectedPageResult expected = new ExpectedPageResult(0, 10, TOTAL_ELEMENTS);
         노선_페이지_응답됨(response, expected);
     }
 
