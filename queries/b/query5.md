@@ -1,13 +1,15 @@
 ##### Q5. 서울대병원에 다닌 30대 환자들을 운동 횟수별로 집계하세요.
 ```sql
-SELECT p.exercise, COUNT(*)
-FROM (SELECT id FROM member WHERE age >= 30 AND age < 40) AS a
-         INNER JOIN programmer p ON a.id = p.member_id
-         INNER JOIN covid c ON c.programmer_id = p.id
-         INNER JOIN hospital h ON c.hospital_id = h.id
-WHERE h.name = '서울대병원'
-GROUP BY p.exercise
-ORDER BY NULL
+SELECT covid.stay, count(*) as count
+FROM member
+    INNER JOIN programmer ON member.id = programmer.member_id
+    INNER JOIN covid ON programmer.id = covid.programmer_id
+    INNER JOIN hospital ON covid.hospital_id = hospital.id
+WHERE programmer.country = 'India'
+  AND member.age >= 20 AND member.age < 30
+  AND hospital.name = '서울대병원'
+GROUP BY covid.stay
+ORDER BY NULL;
 ```
 
 ##### BEFORE 
